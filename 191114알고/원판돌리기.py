@@ -2,10 +2,10 @@ import sys, collections
 sys.stdin = open("원판돌리기_input.txt")
 
 def ROTATE(x, d, k):
-    cnt = 0
+    rcnt = 0
     while True:
-        cnt += 1
-        board = (x * cnt) - 1
+        rcnt += 1
+        board = (x * rcnt) - 1
         if board <= N-1:
             if d == 0: # 시계
                 for _ in range(k):
@@ -17,6 +17,7 @@ def ROTATE(x, d, k):
                     table[board].append(p)
         else:
             break
+
 def BFS(x, y):
     global cnt
     q = collections.deque()
@@ -27,10 +28,10 @@ def BFS(x, y):
 
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
-            if nx < 0 or nx >= N : continue
-            if ny == -1:
+            if nx < 0 or nx >= N: continue
+            if ny < 0:
                 ny = M-1
-            elif ny == M:
+            elif ny >= M:
                 ny = 0
             if table[nx][ny] == v:
                 table[x][y] = 0
@@ -41,22 +42,14 @@ def BFS(x, y):
 dx = [0, 0, -1, 1]
 dy = [-1, 1, 0, 0]
 N, M, T = map(int, input().split())
-table = []
+table = [list(map(int, input().split())) for _ in range(N)]
 
-for i in range(N):
-    table.append(list(map(int, input().split())))
-
-rotates = []
-for i in range(T):
-    x, d, k = map(int, input().split())
-    rotates.append([x, d, k])
+rotates = [list(map(int, input().split())) for i in range(T)]
     # x는 회전하는 원판(행)
     # d = 0 시계방향, d = 1 반시계
     # k 는 회전 횟수
 
-# 여기서 중요한 것은 인접하다고 바로 삭제하는것이 아닌
-# 삭제하기전에 인접한것을 전부 찾아놓고 한번에삭제하자.
-
+f = 0
 for rotate in rotates:
     x, d, k = rotate[0], rotate[1], rotate[2]
     ROTATE(x, d, k)
@@ -73,9 +66,12 @@ for rotate in rotates:
         tcnt = 0
         for x in range(N):
             for y in range(M):
-                if table[x][y]:
+                if table[x][y] > 0:
                     tot += table[x][y]
                     tcnt += 1
+        if tot == 0:
+            f = 1
+            break
         avg = tot / tcnt
         for x in range(N):
             for y in range(M):
@@ -86,8 +82,10 @@ for rotate in rotates:
                         table[x][y] += 1
 
 res = 0
-for x in range(N):
-    for y in range(M):
-        res += table[x][y]
-
-print(res)
+if f:
+    print(res)
+else:
+    for x in range(N):
+        for y in range(M):
+            res += table[x][y]
+    print(res)
