@@ -7,6 +7,7 @@ def solution(N, number):
     S = [0, {N}]
     for i in range(2, 9):
         case_set = {int(str(N)*i)}
+        print(type(case_set))
         for i_half in range(1, i//2+1):  # S[i_half] S[1]
             for x in S[i_half]:
                 for y in S[i-i_half]:
