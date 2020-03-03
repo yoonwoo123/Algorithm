@@ -3,7 +3,7 @@ sys.stdin = open("야구_input.txt")
 input = sys.stdin.readline
 
 N = int(input())
-arr = [list(map(int, list(input().split()))) for _ in range(N)]
+arr = [list(map(int, input().split())) for _ in range(N)]
 mymax = 0 # 가장큰값으로
 for order in itertools.permutations(range(1, 9), 8):
     order = list(order[:3]) + [0] + list(order[3:])
