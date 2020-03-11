@@ -1,0 +1,4 @@
+F S-5 Freedom Fighter
+B S-50 Superfortress
+A S-10 Thunderbolt II
+F S-14 Tomcat
