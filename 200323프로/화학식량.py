@@ -21,5 +21,3 @@ for c in f'({input()})':
         push(pop() * int(c))
     else:
         push(W[c])
-
-print(pop())
