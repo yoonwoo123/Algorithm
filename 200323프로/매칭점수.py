@@ -44,6 +44,8 @@ for i in range(L):
 # 아래는 고수의 풀이법.. 이런식으로 푸는 법을 익히자
 def getScore(word, page):
     return re.sub('[^a-z]+', '.', page.lower()).split('.').count(word.lower())
+    # re.sub는 특정 패턴을 원하는 글자로 바꿔준다. 여기선 ^ 는 not이므로 알파벳소문자를 제외한
+    # 모든 문자를 .으로 바꿔주고 그후에 split('.')으로 파싱해준다음 count로 word와 같은것을 세었다.
 
 def solution(word, pages):
     webpages = {}
