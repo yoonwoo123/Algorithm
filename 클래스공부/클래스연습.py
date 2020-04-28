@@ -36,3 +36,8 @@ print(a.mul())
 print(a.sub())
 print(a.div())
 print(c.div())
+
+dic = {'one':'1', 'two':'2', 'three':'3'}
+for k, v in dic.items():
+    exec(f'{k} = "{v}"')
+print(one, two, three)
