@@ -3,11 +3,11 @@ sys.stdin = open("공항_input.txt")
 
 def parent_find(x):
     if x == parent[x]: # 부모노드가 자기 자신이다 -> 말단노드 즉 가장뿌리이다.
-        return x
+        return parent[x]
     p = parent_find(parent[x]) # 부모가 자기자신이 아니라면 찾을때까지 재귀
     # 즉 최종적으로 나오는 p 값은 가장뿌리값이 나올것
     parent[x] = p # x의 최상위 부모는 p로 설정
-    return p
+    return parent[x]
 
 def union(x, y):
     x = parent_find(x)
