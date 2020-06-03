@@ -45,7 +45,8 @@ def BFS(x, y):
                 poses[i][0] += 1
     for i in range(len(poses)):
         px, py = poses[i][0], poses[i][1]
-        table[px][py] = 'x'
+        if visit[px][py]:
+            table[px][py] = 'x'
 
 cnt = 0
 for cmd in cmds:
