@@ -1,4 +1,4 @@
-import sys, collections
+import sys, collections, itertools
 sys.stdin = open("미네랄_input.txt")
 input = sys.stdin.readline
 
