@@ -20,9 +20,16 @@ else:
         # 답이 틀릴 수 있는 반례의 경우 생각해보면 자릿수가 바뀔 때
         # 못잡아준다. 그래서 4자릿수라 가정 시 만들 수 있는
         # 가장 큰 3자릿 수 만들수 있는 가장 작은 5자릿수를 염두하자.
-        for i in range(TN-1, len(str(target))+2):
-            for perm in itertools.product(remocon, repeat= 9):
-                if ans == len(str(target)): break
-                num = int(''.join(map(str, perm)))
-                ans = min(ans, abs(target - num) + len(str(num)))
-        print(min(abs(target - 100), ans))
+        for perm in itertools.product(remocon, repeat= len(str(target))):
+            if ans == len(str(target)): break
+            num = int(''.join(map(str, perm)))
+            ans = min(ans, abs(target - num) + len(str(num)))
+        con_small = str(max(remocon)) * (len(str(target)) - 1)
+        con_big = str(min(remocon)) * (len(str(target)) + 1)
+        if con_big[0] == '0' and len(remocon) > 1:
+            con_big = con_big.replace('0', str(sorted(remocon)[1]), 1)
+        con1 = 9999999
+        if con_small != '':
+            con1 = abs(target - int(con_small))
+        con2 = abs(target - int(con_big))
+        print(min(abs(target - 100), ans, len(str(con_small)) + con1, len(str(con_big)) + con2))
