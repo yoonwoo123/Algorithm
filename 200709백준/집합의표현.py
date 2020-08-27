@@ -8,9 +8,8 @@ N, M = map(int, input().split())
 # 같은 집합에 포함되있나 검사는 부모가 같다면 yes 아니면 no
 
 def parent_find(x):
-    if parents[x] == x:
-        return parents[x]
-    parents[x] = parent_find(parents[x])
+    if parents[x] != x:
+        parents[x] = parent_find(parents[x])
     return parents[x]
 
 def union(a, b):
