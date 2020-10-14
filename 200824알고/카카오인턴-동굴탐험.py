@@ -4,7 +4,7 @@ order = [[8,5],[6,7],[4,1]]
 
 def solution(n, path, order):
     answer = True
-    
+
     return answer
 
 print(solution(n, path, order))
