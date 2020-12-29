@@ -55,9 +55,9 @@ for time in range(N):
         sx = nx
 
     while True:
-        # for g in table:
-        #     print(g)
-        # print()
+        for g in table:
+            print(g)
+        print()
         # 4칸 겹치는지 체크
         deleteRows = []
         for i in range(4, 10):
@@ -71,38 +71,39 @@ for time in range(N):
         if deleteRows == []: break
         for row in deleteRows:
             score += 1
-            j = 0
 
             # 몇 칸을 내려갈지가 아닌 블록이나 바닥에
             # 닿을 때까지로 코드 수정 후
             # 22 블록은 두블록이 한 덩어리로 같이 행동해야 한다.
 
             ## 수정필요
-            # while j < 4:
-            #     # 몇 칸을 내려갈지 세 주자
-            #     cnt = 1
-            #     for i in range(row + 1, 10):
-            #         if table[i][j]: break
-            #         cnt += 1
-            #     # print(j, cnt)
-            #     # for g in table:
-            #     #     print(g)
-            #     # print()
-            #
-            #     flag = False
-            #     for i in range(row + cnt - 1, 3, -1):
-            #         if table[i - cnt][j] == 2:
-            #             table[i]
-            #
-            #         table[i][j] = table[i - cnt][j]
-            #         if table[i][j] == 2:
-            #             table[i][j+1] = table[i - cnt][j+1]
-            #             flag = True
-            #
-            #     if flag:
-            #         j += 2
-            #     else:
-            #         j += 1
+            j = 0
+
+            while j < 4:
+                # 몇 칸을 내려갈지 세 주자
+                cnt = 1
+                for i in range(row + 1, 10):
+                    if table[i][j]: break
+                    cnt += 1
+                # print(j, cnt)
+                # for g in table:
+                #     print(g)
+                # print()
+
+                flag = False
+                for i in range(row + cnt - 1, 3, -1):
+                    if table[i - cnt][j] == 2:
+                        table[i]
+
+                    table[i][j] = table[i - cnt][j]
+                    if table[i][j] == 2:
+                        table[i][j+1] = table[i - cnt][j+1]
+                        flag = True
+
+                if flag:
+                    j += 2
+                else:
+                    j += 1
 
     # 0행 1행에 블록이 있으면 맨밑행을 삭제
     cnt = 0
